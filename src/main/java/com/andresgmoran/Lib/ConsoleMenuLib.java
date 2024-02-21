@@ -78,5 +78,16 @@ public class ConsoleMenuLib {
         sb.append("Elige una opcion: \n");
         return sb.toString();
     }
+    public String toStringCharacters(){
+        String characters = "abcdefghijklmnñopqrstuvwxyz";
+        StringBuilder sb = new StringBuilder();
+        sb.append("*** ").append(text).append(" ***\n");
+        for(int i = 0; i < numOptions; i++){
+            sb.append(characters.charAt(i)).append(options[i].text).append("\n");
+        }
+        sb.append("------------------------------\n");
+        sb.append("Elige una opcion: \n");
+        return sb.toString();
+    }
 
 }
