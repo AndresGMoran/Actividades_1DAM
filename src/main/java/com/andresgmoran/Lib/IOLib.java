@@ -1,12 +1,20 @@
-package com.andresgmoran.Tema_07.Lib;
+package com.andresgmoran.Lib;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Scanner;
 import java.util.Date;
+import java.util.Scanner;
 
 public class IOLib {
     public static Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Metodo para solicitar String
+     * @param mensaje el mensaje a mostrar en pantalla
+     * @param min la longitud minima valido del String
+     * @param max la longituda maxima valido del String
+     * @return el texto(String) que a insertado el usuario (si es valido)
+     */
     public static String solicitarString(String mensaje, int min, int max){
         String result;
         boolean valido;
@@ -21,6 +29,12 @@ public class IOLib {
         return result;
     }
 
+    /**
+     * Metodo para solicitar una fecha
+     * @param mensaje el mensaje a mostrar en pantalla
+     * @param formato el formato a seguir al insertar la fecha
+     * @return la fecha insertada del ususario (si es valido)
+     */
     public static Date solicitarFechaDate(String mensaje, SimpleDateFormat formato){
         Date fecha = null;
         boolean valido;
@@ -37,12 +51,20 @@ public class IOLib {
         } while (!valido);
         return fecha;
     }
-    public static double solicitarDouble(String mensjae, double min, double max){
+
+    /**
+     * Metodo para solicitar un double
+     * @param mensaje el mensaje a mostrar en pantalla
+     * @param min el numero minimo valido
+     * @param max el numero maximo valido
+     * @return el numero(Double) que a insertado el usuario (si es valido)
+     */
+    public static double solicitarDouble(String mensaje, double min, double max){
         double result;
         boolean valido;
 
         do {
-            System.out.println(mensjae);
+            System.out.println(mensaje);
             result = Double.parseDouble(scanner.nextLine());
             valido = result >= min && result <= max;
             if (!valido)

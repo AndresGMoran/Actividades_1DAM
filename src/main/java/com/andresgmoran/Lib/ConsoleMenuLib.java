@@ -1,19 +1,19 @@
-package com.andresgmoran.Tema_07.Lib;
+package com.andresgmoran.Lib;
 
 import java.util.Scanner;
 
-public class ConsoleMenu {
+public class ConsoleMenuLib {
     public static Scanner scanner = new Scanner(System.in);
     private static final int INICIAL_CAPACITY = 5;
     private final String text;
-    private ConsoleMenu[] options;
+    private ConsoleMenuLib[] options;
     private int numOptions;
 
     /**
      * Constuctor de menus
      * @param text es el titulo del menu a crear
      */
-    public ConsoleMenu(String text) {
+    public ConsoleMenuLib(String text) {
         this.text = text;
         this.options = null;
         numOptions = 0;
@@ -23,7 +23,7 @@ public class ConsoleMenu {
      * Extender capacidad del menu
      */
     private void extendCapacity(){
-        ConsoleMenu[] copy = new ConsoleMenu[options.length * 2];
+        ConsoleMenuLib[] copy = new ConsoleMenuLib[options.length * 2];
         for(int i = 0; i < options.length; i++){
             copy[i] = options[i];
         }
@@ -35,14 +35,14 @@ public class ConsoleMenu {
      * @param text es el titulo de la opcino que queramos añadir
      * @return la opcion añadida
      */
-    public ConsoleMenu addOption(String text){
+    public ConsoleMenuLib addOption(String text){
         if (options == null){
-            options = new ConsoleMenu[INICIAL_CAPACITY];
+            options = new ConsoleMenuLib[INICIAL_CAPACITY];
         }
         if (numOptions == options.length){ //El array esta lleno
             extendCapacity();
         }
-        ConsoleMenu result = new ConsoleMenu(text);
+        ConsoleMenuLib result = new ConsoleMenuLib(text);
         options[numOptions] = result;
         numOptions++;
         return result;
@@ -51,7 +51,7 @@ public class ConsoleMenu {
 
     /**
      * Para mostrar el menu
-     * @return
+     * @return opcion seleccionada por el usuario
      */
     public int showMenu(){
         boolean valid;
@@ -63,6 +63,11 @@ public class ConsoleMenu {
         }while (!valid);
         return option;
     }
+
+    /**
+     * Metodo para pasar el menu a String
+     * @return el builder a String
+     */
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("*** ").append(text).append(" ***\n");
