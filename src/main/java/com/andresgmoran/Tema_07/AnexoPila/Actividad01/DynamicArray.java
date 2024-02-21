@@ -15,15 +15,19 @@ public class DynamicArray {
     }
     public boolean add(double valor){
         if(size >= arr.length)
-            arr = aumentarTamanyo();
+            arr = resize();
         arr[size] = valor;
         size++;
 
         return true;
     }
     public boolean add(int index, double value){
+        if (index >= size ||  index < 0)
+            return false;
+
         if(size >= arr.length)
-            arr = aumentarTamanyo();
+            arr = resize();
+
         moveRight(index);
         arr[index] = value;
 
@@ -31,26 +35,32 @@ public class DynamicArray {
 
     }
     public double remove(int index){
-        arr[index] = 0;
-        for (int i = index; i < size;i++){
-            arr[i] = arr[i + 1];
-        }
-        size--;
-        return arr[index];
+        if (index >= size || index < 0)
+            return Double.POSITIVE_INFINITY;
+        double result = arr[index];
+        moveLeft(index);
+        return result;
     }
-    public double removePorValue(double value){
-        int index;
-        double encontrado = 0;
+    public double removeWithValue(double value){
+        double result = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == value) {
-                encontrado = remove(i);
+                result = remove(i);
                 break;
             }
         }
-        return encontrado;
+        return result;
     }
-    public double get(int indice){
-        return arr[indice];
+    public double get(int index){
+        if (index >= size || index < 0)
+            return Double.POSITIVE_INFINITY;
+        return arr[index];
+    }
+    public boolean set(int index, double value){
+        if (index >= size || index < 0)
+            return false;
+        arr[index] = value;
+        return true;
     }
     private void moveRight(int index){
         for (int i = size; i > index;i--){
@@ -58,18 +68,55 @@ public class DynamicArray {
         }
         size++;
     }
-    private double[] aumentarTamanyo(){
-        double[] nuevoArr = new double[size*2];
-        System.arraycopy(arr, 0, nuevoArr, 0, arr.length);
-        /*for (int i = 0; i <= arr.length; i++){
-            arr[i] = nuevoArr[i];
-        }*/
-        return nuevoArr;
+    private void moveLeft(int index){
+        for (int i = index; i < size;i++){
+            arr[i] = arr[i + 1];
+        }
+        size--;
+    }
+    private double[] resize(){
+        double[] newArray = new double[size*2];
+        for (int i = 0; i < size; i++){
+             newArray[i] = arr[i];
+        }
+        return newArray;
 
     }
-    public void imprimirArray(){
-        for (int i = 0; i < arr.length;i++){
-            System.out.println(arr[i]);
+    public int size(){
+        return size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DynamicArray that = (DynamicArray) o;
+
+        if (size != that.size) return false;
+        for (int i = 0; i < size; i++){
+            if (arr[i] != that.arr[i])
+                return false;
         }
+        return true;
+        //return Arrays.equals(arr, that.arr);
+    }
+
+    @Override
+    public int hashCode() {
+        double[] effectiveArray = new double[size];
+        for (int i = 0; i < effectiveArray.length;i++){
+            effectiveArray[i] = arr[i];
+        }
+        int result = Arrays.hashCode(arr);
+        result = 31 * result + size;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");sb.append(Arrays.toString(arr));sb.append("}");sb.append(" Size: ");sb.append(size);
+        return sb.toString();
     }
 }
