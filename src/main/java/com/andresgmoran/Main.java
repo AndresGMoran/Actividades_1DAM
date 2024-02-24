@@ -2,46 +2,33 @@ package com.andresgmoran;
 
 import com.andresgmoran.Lib.ArraysLib;
 import com.andresgmoran.Lib.ConsoleMenuLib;
+import com.andresgmoran.Lib.IOLib;
 import com.andresgmoran.Tema_07.AnexoPila.Actividad01.DynamicArray;
+import com.andresgmoran.Tema_07.AnexoPila.Actividad05.NotacionPolacaInversa;
+import com.andresgmoran.Tema_07.AnexoPila.Cola;
 import com.andresgmoran.Tema_07.AnexoPila.Pila;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        DynamicArray dynamicArray = new DynamicArray();
-        Random rnd = new Random();
 
-        if (dynamicArray.set(0,100))
-            System.out.println("Deberia fallar");
-
-        for (int i = 0; i < 5;i++){
-            dynamicArray.add(rnd.nextDouble() * 1000);
+        NotacionPolacaInversa notacionPolacaInversa = new NotacionPolacaInversa("12 3 -");
+        System.out.println(notacionPolacaInversa.parse());
+        /*Random rnd = new Random();
+        Cola cola = new Cola(5);
+        for (int i = 0;i <= 10; i++){
+            cola.add(rnd.nextDouble() * 10);
         }
-
-        System.out.println("Array original: ");
-        System.out.println(dynamicArray);
-
-        System.out.println();
-        System.out.println("Array con eliminacion 1: ");
-        dynamicArray.remove(3);
-        System.out.println(dynamicArray);
-
-        System.out.println();
-        System.out.println("Cambiar un elemento: ");
-        dynamicArray.set(2,3);
-        System.out.println(dynamicArray);
-
-        System.out.println();
-        System.out.println("Array con eliminacion 2: ");
-        dynamicArray.removeWithValue(3);
-        System.out.println(dynamicArray);
-
-
-
-
-
-
-
+        System.out.println(cola);
+        for (int i = 0; i <= 10; i++){
+            if (rnd.nextBoolean()) {
+                cola.add(rnd.nextDouble() * 10);
+            }else {
+                double res = cola.remove();
+            }
+        }
+        System.out.println(cola);*/
     }
 }

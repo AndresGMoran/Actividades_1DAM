@@ -1,30 +1,31 @@
 package com.andresgmoran.Tema_07.AnexoPila;
 
-public class Pila {
-    private String[] datos;
+public class PilaDouble {
+    private double[] datos;
     private int tope;
 
-    public Pila(int capacidadIncial){
-        datos = new String[capacidadIncial];
+    public PilaDouble(int capacidadIncial){
+        datos = new double[capacidadIncial];
         tope = -1;
     }
-    public void push(String elemento){
+    public void push(double elemento){
        if (isFull()){
            ampliarArray();
        }
+
        datos[++tope] = elemento;
     }
-    public String pop(){
+    public Double pop(){
         if (!isEmpty()) {
             return datos[tope--];
         }
-        return null;
+        return Double.POSITIVE_INFINITY;
     }
     public int size(){
         return tope + 1;
     }
     private void ampliarArray(){
-        String[] nuevoArray = new String[datos.length *2];
+        double[] nuevoArray = new double[datos.length *2];
         for (int i = 0; i < datos.length; i++){
             nuevoArray[i] = datos[i];
         }

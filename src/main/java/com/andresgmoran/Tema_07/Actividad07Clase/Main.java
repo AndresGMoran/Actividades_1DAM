@@ -1,8 +1,8 @@
-/*
 package com.andresgmoran.Tema_07.Actividad07Clase;
 
-import com.andresgmoran.Tema_07.Lib.ConsoleMenu;
-import com.andresgmoran.Tema_07.Lib.IOLib;
+
+import com.andresgmoran.Lib.ConsoleMenuLib;
+import com.andresgmoran.Lib.IOLib;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -11,27 +11,27 @@ import java.util.Scanner;
 
 public class Main {
    public static CentroMedico centroMedico;
-   public static ConsoleMenu consoleMenu;
-   public static ConsoleMenu consoleGenero;
-   public static ConsoleMenu consoleConsultas;
+   public static ConsoleMenuLib consoleMenu;
+   public static ConsoleMenuLib consoleGenero;
+   public static ConsoleMenuLib consoleConsultas;
     public static void main(String[] args) {
        centroMedico = new CentroMedico(500,1000);
 
         System.out.println(centroMedico);
 
-        consoleMenu = new ConsoleMenu("URGENCIAS");
+        consoleMenu = new ConsoleMenuLib("URGENCIAS");
         consoleMenu.addOption(" Nuevo paciente");
         consoleMenu.addOption(" Atender paciente");
-        ConsoleMenu consultas = consoleMenu.addOption(" Consultas");
+        ConsoleMenuLib consultas = consoleMenu.addOption(" Consultas");
         consoleMenu.addOption(" Alta medica");
 
         Paciente.Genero[] generos = Paciente.Genero.values();
-        consoleGenero = new ConsoleMenu("Opciones");
+        consoleGenero = new ConsoleMenuLib("Opciones");
         for (int i = 0; i < generos.length; i++) {
             consoleGenero.addOption( generos[i].toString());
         }
 
-        consoleConsultas = new ConsoleMenu("Consultas");
+        consoleConsultas = new ConsoleMenuLib("Consultas");
         consoleConsultas.addOption(" Por sip");
         consoleConsultas.addOption(" Por fechas");
         consoleConsultas.addOption(" Estadisticas");
@@ -134,10 +134,9 @@ public class Main {
                 historialAtenciones = centroMedico.obtenerHistorial();
                 System.out.println(historialAtenciones[0]);
             case 5:
-                String sip = IOLib.solicitarString("Sip: ",4,12);
+                sip = IOLib.solicitarString("Sip: ",4,12);
 
         }
     }
 
 }
-*/
