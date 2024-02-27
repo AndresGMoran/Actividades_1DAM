@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner scanner = new Scanner(System.in);
    public static CentroMedico centroMedico;
    public static ConsoleMenuLib consoleMenu;
    public static ConsoleMenuLib consoleGenero;
@@ -53,7 +54,7 @@ public class Main {
                     consultas();
                     break;
                 case 4:
-                   // altaMedica();
+                   altaMedica();
                     break;
                 case 5:
                     System.out.println("Xao");
@@ -138,5 +139,40 @@ public class Main {
 
         }
     }
+    public static void altaMedica() {
+        String sip;
+        int i = 1;
+        boolean validado;
+        int opcion;
+        Atencion atencionPaciente;
+        System.out.println("Sip: ");
+        sip = scanner.nextLine();
+        atencionPaciente = centroMedico.obtenerRegistroAtencionPaciente(sip);
+        if (atencionPaciente != null) {
+            do {
+                System.out.println("*****************");
+                System.out.println("** MOTIVO ALTA **");
+                System.out.println("*****************");
+                for (Atencion.MotivoAlta motivoAlta : Atencion.MotivoAlta.values()) {
+                    System.out.println(i + ". " + motivoAlta);
+                    i++;
+                }
+                System.out.print("\nElija un motivo: ");
+                opcion = Integer.parseInt(scanner.nextLine());
+                validado = opcion >= 1 && opcion <= Atencion.MotivoAlta.values().length;
+                if (!validado) {
+                    System.out.println("Elija una opción del menú");
+                }
+            } while (!validado);
+            if (atencionPaciente.darAlta(Atencion.MotivoAlta.fromInteger(opcion-1))) {
+                System.out.println("El paciente ha sido de alta correctamente");
+            } else {
+                System.out.println("No se ha podido dar de alta al paciente");
+            }
+        } else {
+            System.out.println("No se ha encontrado el paciente con sip " + sip);
+        }
+    }
+
 
 }

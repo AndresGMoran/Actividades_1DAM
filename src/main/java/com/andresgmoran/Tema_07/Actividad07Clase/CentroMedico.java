@@ -25,12 +25,12 @@ public class CentroMedico {
         atenciones = new Atencion[capacidadIncialAtenciones];
         numAtenciones = 0;
         estadisticas = null;
-        if (Config.DEBUG) {
+        /*if (Config.DEBUG) {
             generarDatosAleatoriosPacientes(capacidadInicalPacientes);
             generarDatosAleatoriosAtenciones(capacidadIncialAtenciones);
-        }
+        }*/
     }
-    private void generarDatosAleatoriosPacientes(int numMaxPacientes){
+    /*private void generarDatosAleatoriosPacientes(int numMaxPacientes){
         Faker fk = new Faker();
         Random rnd = new Random();
 
@@ -70,7 +70,7 @@ public class CentroMedico {
                 double tensionDistolica = fk.random().nextDouble(50,150);
                 if(fk.random().nextInt(100) > 100 - 40) {
                     Date fechaAlta = fechaEntrada;
-                    String motivoAlta = fk.medical().diagnosisCode();
+                    Atencion.MotivoAlta motivoAlta = fk.medical().diagnosisCode();
                     atencion.altaPaciente(fechaAlta,motivoAlta);
                 }
             }
@@ -78,7 +78,7 @@ public class CentroMedico {
             numAtenciones++;
 
         }
-    }
+    }*/
 
     /**
      * Busqueda de paciente por medio del sip
@@ -132,9 +132,7 @@ public class CentroMedico {
         }
         return historicoAtenciones;
     }
-    public boolean altaMedica(String sip, String motivoAlta){
-        buscarAtencionPacienteNoAtendido();
-    }
+
     /**
      * Crear nuevo paciente
      * @param sip el sip del paciente
@@ -149,6 +147,22 @@ public class CentroMedico {
         Paciente paciente = new Paciente(sip,nombre,genero,fechaNacimineto);
         pacientes[numPacientes++] = paciente;
         return paciente;
+    }
+
+    /**
+     * Obtiene el registro de atención médica actual de un paciente
+     * El paciente aún permanece en el Centro de Salud ya que no se le ha dado el alta
+     * @param sip SIP del paciente
+     * @return AtencionMedica
+     */
+    public Atencion obtenerRegistroAtencionPaciente(String sip) {
+        for (int i = 0; i < numAtenciones; i++) {
+            Paciente paciente = atenciones[i].getPaciente();
+            if (paciente.getSip().equals(sip) && atenciones[i].getFechaAlta() == null) {
+                return atenciones[i];
+            }
+        }
+        return null;
     }
 
     /**
@@ -176,7 +190,7 @@ public class CentroMedico {
      * @return false si la atencion del paciente esta vacio y true si se a efectuado correctamente la atencion
      */
     public boolean atenderPaciente(String sip,double temperatura,double ppm,double tensionSistolica,double tensionDiastolica){
-        Atencion atencion = buscarAtencionPacienteNoAtendido(sip);
+        Atencion atencion = obtenerRegistroAtencionPaciente(sip);
         if (atencion == null)
             return false;
         atencion.setconstantesVitales(temperatura,ppm,tensionSistolica,tensionDiastolica);

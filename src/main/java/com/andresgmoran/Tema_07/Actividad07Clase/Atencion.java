@@ -3,6 +3,7 @@ import com.andresgmoran.Tema_07.Actividad07.Pacient;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Atencion {
     private static final int POSICION_TEMPERATURA = 0;
@@ -15,7 +16,37 @@ public class Atencion {
     private final String sintomatologia;
     private double[] preRev;
     private  Date fechaAlta;
-    private  String motivoAlta;
+
+    public enum MotivoAlta {
+        MEJORA, DERIVACION_HOSPITAL, DEFUNCION;
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case MEJORA:
+                    return "Mejora";
+                case DERIVACION_HOSPITAL:
+                    return "Derivación hospital";
+                case DEFUNCION:
+                    return "Defunción";
+            }
+            throw new IllegalArgumentException();
+        }
+
+        public static MotivoAlta fromInteger(int x) {
+            switch (x) {
+                case 0:
+                    return MEJORA;
+                case 1:
+                    return DERIVACION_HOSPITAL;
+                case 2:
+                    return DEFUNCION;
+            }
+            return null;
+        }
+
+    }
+    private  MotivoAlta motivoAlta;
 
     /**
      * Constructor de atencion
@@ -43,9 +74,20 @@ public class Atencion {
         if (atencion.fechaAlta != null) {
             this.fechaAlta = new Date(atencion.fechaAlta.getTime());
         }
-        if (atencion.motivoAlta != null) {
-            this.motivoAlta = new String(atencion.motivoAlta);
+    }
+
+    /**
+     * Da de alta al paciente con el motivo indicado
+     * @param motivoAlta
+     * @return
+     */
+    public boolean darAlta(MotivoAlta motivoAlta) {
+        if (fechaAlta == null) {
+            fechaAlta = new Date();
+            this.motivoAlta = motivoAlta;
+            return true;
         }
+        return false;
     }
     public boolean isAtendido(){
         return preRev == null;
@@ -54,7 +96,7 @@ public class Atencion {
     public Paciente getPaciente() {
         return paciente;
     }
-    public void altaPaciente(Date fechaAlta, String motivoAlta){
+    public void altaPaciente(Date fechaAlta, MotivoAlta motivoAlta){
         this.fechaAlta = fechaAlta;
         this.motivoAlta = motivoAlta;
     }
@@ -121,7 +163,7 @@ public class Atencion {
         return fechaAlta;
     }
 
-    public String getMotivoAlta() {
+    public MotivoAlta getMotivoAlta() {
         return motivoAlta;
     }
 

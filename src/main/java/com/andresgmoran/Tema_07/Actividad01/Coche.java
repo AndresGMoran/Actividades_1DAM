@@ -1,4 +1,4 @@
-package com.andresmorantema_07.Actividad01;
+package com.andresgmoran.Tema_07.Actividad01;
 import net.datafaker.Faker;
 
 import java.util.Locale;

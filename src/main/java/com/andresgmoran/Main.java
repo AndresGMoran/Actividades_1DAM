@@ -3,8 +3,10 @@ package com.andresgmoran;
 import com.andresgmoran.Lib.ArraysLib;
 import com.andresgmoran.Lib.ConsoleMenuLib;
 import com.andresgmoran.Lib.IOLib;
+import com.andresgmoran.Tema_07.Actividad07.Pacient;
 import com.andresgmoran.Tema_07.AnexoPila.Actividad01.DynamicArray;
 import com.andresgmoran.Tema_07.AnexoPila.Actividad05.NotacionPolacaInversa;
+import com.andresgmoran.Tema_07.AnexoPila.Actividad08.GenericDynamicArray;
 import com.andresgmoran.Tema_07.AnexoPila.Cola;
 import com.andresgmoran.Tema_07.AnexoPila.Pila;
 
@@ -14,8 +16,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        NotacionPolacaInversa notacionPolacaInversa = new NotacionPolacaInversa("12 3 -");
-        System.out.println(notacionPolacaInversa.parse());
+
+
+
+        /* GenericDynamicArray<Pacient> pacientes = new GenericDynamicArray<>();
+        for (int i = 0; i < 10;i++){
+            pacientes.add(new Pacient();
+        }*/
+
+        //NotacionPolacaInversa notacionPolacaInversa = new NotacionPolacaInversa("12 3 -");
+        //System.out.println(notacionPolacaInversa.parse());
+
         /*Random rnd = new Random();
         Cola cola = new Cola(5);
         for (int i = 0;i <= 10; i++){

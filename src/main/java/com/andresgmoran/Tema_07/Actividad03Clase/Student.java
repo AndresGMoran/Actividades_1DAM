@@ -1,4 +1,4 @@
-package com.andresmorantema_07.Actividad03Clase;
+package com.andresgmoran.Tema_07.Actividad03Clase;
 
 public class Student {
     public static long autoIncrement;

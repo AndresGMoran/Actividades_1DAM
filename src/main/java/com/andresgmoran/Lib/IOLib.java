@@ -72,4 +72,25 @@ public class IOLib {
         }while (!valido);
         return result;
     }
+
+    /**
+     * Metodo para solicitar un integer
+     * @param mensaje el mensaje a mostrar en pantalla
+     * @param min el numero minimo valido
+     * @param max el numero maximo valido
+     * @return el numero(integer) que a insertado el usuario (si es valido)
+     */
+    public static int solicitarInteger(String mensaje, int min, int max){
+        int result;
+        boolean valido;
+
+        do {
+            System.out.println(mensaje);
+            result = Integer.parseInt(scanner.nextLine());
+            valido = result >= min && result <= max;
+            if (!valido)
+                System.err.printf("La longitud tiene que ser entre %s y %s", min,max);
+        }while (!valido);
+        return result;
+    }
 }

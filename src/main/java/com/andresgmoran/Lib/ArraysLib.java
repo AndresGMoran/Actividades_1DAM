@@ -51,8 +51,8 @@ public class ArraysLib {
     /**
      * Convertir un array a un String
      * @param array el array que queremos pasar a String
-     * @param numDecimales
-     * @return el constructor a String
+     * @param numDecimales el numero de decimales que queremos que tengan los numeros de la array
+     * @return el constructor con los numeros a String
      */
     public String arrayToString(double[] array, int numDecimales){
         StringBuilder sb = new StringBuilder();

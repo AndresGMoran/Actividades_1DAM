@@ -1,4 +1,4 @@
-package com.andresmorantema_07.Actividad02;
+package com.andresgmoran.Tema_07.Actividad02;
 
 public class Asignaturas {
     private String name;

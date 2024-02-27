@@ -1,4 +1,4 @@
-package com.andresmorantema_07.Actividad01;
+package com.andresgmoran.Tema_07.Actividad01;
 
 public class Principal {
     public static void main(String[] args){

@@ -1,7 +1,7 @@
-package com.andresmorantema_07.Actividad05;
+package com.andresgmoran.Tema_07.Actividad05;
 
 
-import com.andresmorantema_07.Actividad04.Punto;
+import com.andresgmoran.Tema_07.Actividad04.Punto;
 
 public class Principal {
     public static void main(String[] args) {

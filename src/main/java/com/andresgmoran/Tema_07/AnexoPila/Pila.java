@@ -1,22 +1,22 @@
 package com.andresgmoran.Tema_07.AnexoPila;
 
-public class Pila {
-    private String[] datos;
+public class Pila<T> {
+    private Object[] datos;
     private int tope;
 
     public Pila(int capacidadIncial){
-        datos = new String[capacidadIncial];
+        datos = new Object[capacidadIncial];
         tope = -1;
     }
-    public void push(String elemento){
+    public void push(T elemento){
        if (isFull()){
            ampliarArray();
        }
        datos[++tope] = elemento;
     }
-    public String pop(){
+    public T pop(){
         if (!isEmpty()) {
-            return datos[tope--];
+            return (T) datos[tope--];
         }
         return null;
     }
@@ -24,7 +24,7 @@ public class Pila {
         return tope + 1;
     }
     private void ampliarArray(){
-        String[] nuevoArray = new String[datos.length *2];
+        Object[] nuevoArray = new Object[datos.length *2];
         for (int i = 0; i < datos.length; i++){
             nuevoArray[i] = datos[i];
         }

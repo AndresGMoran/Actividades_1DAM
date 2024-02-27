@@ -1,4 +1,4 @@
-package com.andresmorantema_07.Actividad03;
+package com.andresgmoran.Tema_07.Actividad03;
 import java.util.Scanner;
 
 public class Main {
