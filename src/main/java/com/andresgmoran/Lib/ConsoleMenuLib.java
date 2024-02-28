@@ -59,7 +59,7 @@ public class ConsoleMenuLib {
         do{
             System.out.println(this);
             option = Integer.parseInt(scanner.nextLine());
-            valid = option >= 1 && option <= numOptions;
+            valid = option >= 0 && option <= numOptions;
         }while (!valid);
         return option;
     }
@@ -70,11 +70,12 @@ public class ConsoleMenuLib {
      */
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("*** ").append(text).append(" ***\n");
+        sb.append("\n*** ").append(text).append(" ***\n");
         for(int i = 0; i < numOptions; i++){
             sb.append(i + 1).append(options[i].text).append("\n");
         }
         sb.append("------------------------------\n");
+        sb.append("0. Salir \n");
         sb.append("Elige una opcion: \n");
         return sb.toString();
     }
@@ -86,6 +87,7 @@ public class ConsoleMenuLib {
             sb.append(characters.charAt(i)).append(options[i].text).append("\n");
         }
         sb.append("------------------------------\n");
+        sb.append("0. Salir \n");
         sb.append("Elige una opcion: \n");
         return sb.toString();
     }
