@@ -1,4 +1,4 @@
-package com.andresmorantema_07.Actividad06;
+package com.andresgmoran.Tema_07.Actividad06;
 
 public class Bike {
     public static int autoIncrement;

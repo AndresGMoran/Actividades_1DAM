@@ -1,4 +1,4 @@
-package com.andresmorantema_07.Actividad06;
+package com.andresgmoran.Tema_07.Actividad06;
 import java.util.Scanner;
 public class Main {
     public static BikeShop shop = new BikeShop("XabiaBikes", 500);
