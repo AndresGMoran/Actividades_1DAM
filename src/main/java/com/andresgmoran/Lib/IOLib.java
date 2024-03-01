@@ -93,4 +93,17 @@ public class IOLib {
         }while (!valido);
         return result;
     }
+    public static boolean solicitarBoolean(String mensaje, int min, int max){
+        boolean result;
+        boolean valido;
+
+        do {
+            System.out.println(mensaje);
+            result = Boolean.parseBoolean(scanner.nextLine());
+            valido = String.valueOf(result).length() >= min && String.valueOf(result).length() <= max;
+            if (!valido)
+                System.err.printf("La longitud tiene que ser entre %s y %s", min,max);
+        }while (!valido);
+        return result;
+    }
 }
