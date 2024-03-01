@@ -1,98 +1,64 @@
 package com.andresgmoran.Tema_07.Actividad06;
-import java.util.Scanner;
-public class Main {
-    public static BikeShop shop = new BikeShop("XabiaBikes", 500);
-    public static Scanner scanner;
-    public static void main(String[] args) {
-        int option;
-        do {
-            scanner = new Scanner(System.in);
-            System.out.println("""
-                    *********************
-                    **TIENDA BICISCLETA**
-                    *********************
-                    1. Añadir bicicleta
-                    2. Vender bicicicleta
-                    3. Consultar bicicleta
-                    4. Mostrar stock
-                    -----------------------
-                    0. Salir""");
 
-            option = scanner.nextInt();
-            switch (option) {
+import com.andresgmoran.Lib.ConsoleMenuLib;
+import com.andresgmoran.Lib.IOLib;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Main {
+    public static Tienda tienda = new Tienda("Ciclismo",20);
+    public static ConsoleMenuLib menuPrincipal = new ConsoleMenuLib("GESTION DE BICICLETAS");
+
+    public static void main(String[] args) {
+        menuPrincipal.addOption(" Añadir bicicleta");
+        menuPrincipal.addOption(" Vender bicicleta");
+        menuPrincipal.addOption(" Consultar bicicleta");
+        menuPrincipal.addOption(" Mostar stock");
+        menuPrincipal();
+
+    }
+
+    private static void menuPrincipal() {
+        int opcion;
+        do {
+            opcion = menuPrincipal.showMenu();
+            switch (opcion) {
                 case 1:
-                    newBike();
+                    anyadirBicicleta();
                     break;
                 case 2:
-                    sellBike();
+                    venderBicicleta();
                     break;
                 case 3:
-                    createMenu();
+                    //consultarBicicleta();
                     break;
                 case 4:
-                    showStock();
+                    //mostrarStock();
                     break;
                 case 0:
-                    System.out.println("Hasta luego");
-                    break;
+                    System.exit(0);
             }
-        }while(option != 0);
-        System.out.println(shop);
+        }while (opcion != 0);
     }
-    public static void newBike(){
-        scanner = new Scanner(System.in);
+    private static void anyadirBicicleta(){
+        int numReferencia = IOLib.solicitarInteger("Dime el numero de referencia: ", 2,50000);
+        String marca = IOLib.solicitarString("Dime la marca: ", 2,20);
+        String modelo = IOLib.solicitarString("Dime el modelo: ", 2,20);
+        double peso = IOLib.solicitarDouble("Dime el peso: ",1,3);
+        double tamanyoRuedas = IOLib.solicitarDouble("Dime el tamaño de ruedas: ", 2,30);
+        boolean motor = IOLib.solicitarBoolean("Tiene motor [Si: True, No: False]",4,4);
+        Date fechaFabricacion = IOLib.solicitarFechaDate("Dime la fecha de creacion [dd/MM/yyyy]: ", new SimpleDateFormat("dd/MM/yyyy"));
+        double precio = IOLib.solicitarDouble("Dime el precio: ", 1,50000);
+        int stock = IOLib.solicitarInteger("Dime cuanto hay de stock: ",1,50000);
 
-        String make;
-        String model;
-        double weight;
-        double inchWheels;
-        int engine;
-        String dateFabrication;
-        double price;
-        int stock;
-
-        System.out.println("Dime la marca: ");
-        make = scanner.nextLine();
-
-        System.out.println("Dime el modelo");
-        model = scanner.nextLine();
-
-        System.out.println("Dime el peso: ");
-        weight = Double.parseDouble(scanner.nextLine());
-
-        System.out.println("Dime el tamaño de las ruedas [En pulgadas]: ");
-        inchWheels = Double.parseDouble(scanner.nextLine());
-
-        System.out.println("Dime si la bicicleta lleva motor [Si es que si (1), si es que no (0):] ");
-        engine = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Dime la fecha de fabricacion: ");
-        dateFabrication = scanner.nextLine();
-
-        System.out.println("Dime el precio: ");
-        price = Double.parseDouble(scanner.nextLine());
-
-        System.out.println("Dime el stock que hay: ");
-        stock = Integer.parseInt(scanner.nextLine());
-
-        System.out.println(shop.createBike(make,model,weight,inchWheels,engine,dateFabrication,price,stock));
-
-
+        Bicicleta bicicleta = new Bicicleta(numReferencia,marca,modelo,peso,tamanyoRuedas,motor,fechaFabricacion,precio,stock);
+        System.out.println(tienda.nuevaBicicleta(bicicleta));
+        System.out.println();
+        tienda.imprimirBicicletas();
     }
-    public static void sellBike(){
-        scanner = new Scanner(System.in);
-        System.out.println("Dime el numero de referencia de la bicicleta que quieres vender: ");
-        int referenceNumber = Integer.parseInt(scanner.nextLine());
-        if(shop.eraseBike(referenceNumber))
-            System.out.println("Bicicleta se vendio y se elimino correctamente");
-        else
-            System.out.println("ERROR");
-
-    }
-    public static void showStock(){
-
-    }
-    public static void createMenu(){
-
+    private static void venderBicicleta(){
+        int numReferencia = IOLib.solicitarInteger("Dime el numero de referencia: ",2,50000);
+        tienda.venderBicicleta(numReferencia);
     }
 }
