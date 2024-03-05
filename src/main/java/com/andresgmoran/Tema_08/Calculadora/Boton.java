@@ -1,14 +1,22 @@
 package com.andresgmoran.Tema_08.Calculadora;
 
 public class Boton {
-    enum Action{
-        DIGITO, PUNTO, OPERADOR,IGUAL, ON, OFF, AC
+    public enum Accion {
+        DIGITO, PUNTO, OPERADOR, IGUAL, ON, OFF, AC
     }
-    private String texto;
-    private Action action;
+    private final String texto;
+    private final Accion accion;
 
-    public Boton(String texto, Action action) {
+    public Boton(String texto, Accion accion) {
         this.texto = texto;
-        this.action = action;
+        this.accion = accion;
+    }
+
+    public Accion getAccion() {
+        return accion;
+    }
+
+    public String getTexto() {
+        return texto;
     }
 }
