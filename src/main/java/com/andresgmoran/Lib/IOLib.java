@@ -45,6 +45,7 @@ public class IOLib {
             try {
                 fecha = formato.parse(fecharStr);
             } catch (ParseException e) {}
+
             valido = fecha != null;
             if (!valido)
                 System.out.println("El formato de la fecha no es valido");

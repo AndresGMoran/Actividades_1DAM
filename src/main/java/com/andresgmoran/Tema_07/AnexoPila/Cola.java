@@ -1,3 +1,4 @@
+/*
 package com.andresgmoran.Tema_07.AnexoPila;
 
 import com.andresgmoran.Tema_07.AnexoPila.Actividad01.DynamicArray;
@@ -51,3 +52,4 @@ public class Cola {
                 '}';
     }
 }
+*/

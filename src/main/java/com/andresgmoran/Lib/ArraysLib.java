@@ -30,7 +30,7 @@ public class ArraysLib {
     }
 
     /**
-     * Rellenar array de numeros aleatorios
+     * Rellenar array de numeros enteros aleatorios
      * @param length es el tamaño de la array
      * @param min es el dato minimo
      * @param max es el dato maximo
@@ -61,5 +61,41 @@ public class ArraysLib {
             sb.append(String.format(format, array[i]));
         }
         return sb.toString();
+    }
+
+    /**
+     * Metodo para ordeanr el array de menor a mayor
+     * @param num array donde se haran los cambios
+     */
+    public static void ordenarArrayMenorMayor(int num[]){
+        int tmp = 0;
+        for (int i = 0; i < num.length-1; i++) {
+            for (int j = i+1; j < num.length; j++) {
+                if(num[i] > num[j]){
+                    tmp = num[i];
+                    num[i] = num[j];
+                    num[j] = tmp;
+                }
+            }
+
+        }
+    }
+
+    /**
+     * Metodo para ordenar el array de mayor a menor
+     * @param num array donde se haran los cambios
+     */
+    public static void ordenarArrayMayorMenor(int num[]){
+        int tmp = 0;
+        for (int i = 0; i < num.length-1; i++) {
+            for (int j = i+1; j < num.length; j++) {
+                if(num[i] < num[j]){
+                    tmp = num[i];
+                    num[i] = num[j];
+                    num[j] = tmp;
+                }
+            }
+
+        }
     }
 }

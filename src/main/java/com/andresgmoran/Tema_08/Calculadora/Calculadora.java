@@ -8,6 +8,7 @@ public class Calculadora {
     private final StringBuilder operando1;
     private final StringBuilder operando2;
     private StringBuilder operandoActual;
+    private String resultado;
     private Estado estadoActual;
     private String operador;
     private final Estado[][] diagramaEstados;
@@ -16,6 +17,7 @@ public class Calculadora {
         operando1 = new StringBuilder();
         operando2 = new StringBuilder();
         operandoActual = operando1;
+        resultado = "0";
         estadoActual = Estado.OPERANDO_ENTERO;
         diagramaEstados = new Estado[][] {
                 // OPERANDO_ENTERO
@@ -47,12 +49,47 @@ public class Calculadora {
         }
         operandoActual.append(digito);
         estadoActual = siguienteEstado;
+        resultado = operandoActual.toString();
     }
+    public void addOperador(String operador) {
+        Estado siguienteEstado = Estado.OPERADOR;
+        if (!esTransicionValida(siguienteEstado)) {
+            error();
+            return;
+        }
+        if (operando1.isEmpty()){
+            error();
+            return;
+        }
+        this.operador = operador;
+        operandoActual = operando2;
+        estadoActual = Estado.OPERADOR;
+
+//        if (operador == null || operador.length() > 1) {
+//            error();
+//            return;
+    }
+
 
     private void error() {
         estadoActual = Estado.ERROR;
     }
+    public String getResultado(){
+        if (estadoActual == Estado.ERROR)
+            return estadoActual.toString();
+        return resultado;
+    }
 
+    public void resolver() {
+        Estado siguienteEstado = Estado.OPERANDO_ENTERO;
+        if (!esTransicionValida(siguienteEstado)){
+            error();
+            return;
+        }
+        if (operando1.isEmpty() || operando2.isEmpty()){
+            return;
+        }
+    }
     private boolean esTransicionValida(Estado siguienteEstado) {
         Estado[] estadosTransitables = diagramaEstados[estadoActual.ordinal()];
         for (Estado estado : estadosTransitables) {

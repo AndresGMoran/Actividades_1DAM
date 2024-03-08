@@ -1,92 +1,158 @@
 package com.andresgmoran.Tema_07.Actividad06;
 
+import net.datafaker.Faker;
+import org.yaml.snakeyaml.events.Event;
+
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Random;
+
 
 public class Tienda {
-    private final String nombre;
-    private Bicicleta[] bicicletas;
-    private int numBicicletas;
+    private static final int LIMIT_VAMOR_DEFAULT = 10;
+    private final Bicicleta bicis[];
+    private int posActual = 0;
 
-    public Tienda(String nombre, int capacidad) {
-        this.nombre = nombre;
-        numBicicletas = 0;
-        bicicletas = new Bicicleta[capacidad];
+    public Tienda(){
+        this.bicis = new Bicicleta[LIMIT_VAMOR_DEFAULT];
     }
-    public void imprimirBicicletas(){
-        for (int i = 0; i < bicicletas.length;i++){
-            System.out.println(bicicletas[i]);
-        }
+
+    /*** Metodo para comprarBicis */
+    public void comprarBici(String marca, String modelo, double peso, double tamanyoRuedas, boolean motor, String fehca ){
+
+        bicis[posActual] = new Bicicleta(marca, modelo, peso, tamanyoRuedas, motor, fehca);
+        posActual++;
     }
-    public Bicicleta nuevaBicicleta(Bicicleta bicicleta){
-        if (buscarNumReferencia(bicicleta.getNumReferencia()) != null) {
-            System.out.println("Bicicleta ya existe");
-        }else {
-            bicicletas[numBicicletas] = bicicleta;
-            numBicicletas++;
-            return bicicleta;
-        }
-        return null;
-    }
-    public void venderBicicleta(int numReferencia){
-        for (int i = 0; i < numBicicletas;i++){
-            if(numReferencia == bicicletas[i].getNumReferencia() && bicicletas[i].getNumReferencia() > 1) {
-                System.out.println("bicicleta " + bicicletas[i].getModelo() + " se vendio correctamente");
-                int nuevoStock = bicicletas[i].getStock() -1;
-                bicicletas[i].setStock(nuevoStock);
-            }else{
-                System.out.println("Ultima bicicleta " + bicicletas[i].getModelo() + " se vendio correctamente");
-                bicicletas[i] = bicicletas[i + 1];
-                numBicicletas--;
+
+
+    /**
+     * Metodo para vender bicis
+     * @return -1 no hay stock, -2 no se ha encontrado, positivo num se ha encontrado.
+     */
+    public int venderBici(String referencai){
+        if (posActual == 0)
+            return -1;
+
+
+        for (int i = 0; i < posActual; i++) {
+            if (bicis[i].getReferecncia().equals(referencai)) {
+                bicis[i] = null;
+                if (posActual > 1) {
+                    bicis[i] = bicis[posActual];
+                    bicis[posActual] = null;
+                }
+                posActual --;
+                return posActual;
             }
         }
+        return -2;
+
     }
-    private Bicicleta buscarNumReferencia(int referencia){
-        for (int i = 0; i < numBicicletas;i++){
-            if (referencia == bicicletas[i].getNumReferencia()){
-                return bicicletas[i];
+
+    /**
+     * Meotod para obtener todas las bicis en stock
+     * @return devuelve un array de una copia de nuestras bicis.
+     */
+    public Bicicleta[] obtenerStock(){
+        if (posActual == 0) {
+            return null;
+        }
+        Bicicleta[] stock = new Bicicleta[posActual];
+        for (int i = 0; i < posActual; i++) {
+            stock[i] = new Bicicleta(bicis[i]);
+        }
+        return stock;
+    }
+
+    /**
+     * Meotod que devuelve un array con todas las bicis de ese modelo
+     * @param modelo modelo que se busca
+     * @return
+     */
+    public Bicicleta[] obtenerBicisModelo(String modelo){
+        int cont = 0;
+        for (int i = 0; i < posActual; i++) {
+            if (bicis[i].getModelo().equals(modelo)) {
+                cont++;
             }
         }
-        return null;
+        if (cont == 0)
+            return null;
+
+        Bicicleta[] modeloBici = new Bicicleta[cont];
+        boolean encontrado = false;
+        int posicioncopia = 0;
+        for (int i = 0; i < posActual; i++) {
+            if (bicis[i].getModelo().equals(modelo)) {
+                modeloBici[posicioncopia] = new Bicicleta(bicis[i]);
+                encontrado = true;
+                posicioncopia++;
+            }
+        }
+        if (encontrado == false) {
+            return null;
+        }
+        return modeloBici;
     }
 
-    public String getNombre() {
-        return nombre;
+    /**
+     * Meotod que devuelve un array con todas las bicis de ese marca
+     * @param mraca marca que se busca
+     * @return
+     */
+    public Bicicleta[] obtenerBicisMarca(String marca){
+        int cont = 0;
+        for (int i = 0; i < posActual; i++) {
+            if (bicis[i].getMarca().equals(marca)) {
+                cont++;
+            }
+        }
+        if (cont == 0)
+            return null;
+
+        Bicicleta[] marcaBici = new Bicicleta[cont];
+        boolean encontrado = false;
+        int posicioncopia = 0;
+        for (int i = 0; i < posActual; i++) {
+            if (bicis[i].getMarca().equals(marca)) {
+                marcaBici[posicioncopia] = new Bicicleta(bicis[i]);
+                encontrado = true;
+                posicioncopia++;
+            }
+        }
+        if (encontrado == false) {
+            return null;
+        }
+        return marcaBici;
     }
 
-    public Bicicleta[] getBicicletas() {
-        return bicicletas;
-    }
+    /**
+     * Meotod que devuelve una copia de bici con esa referencia
+     * @param refereinca referencia que se busca
+     * @return
+     */
+    public Bicicleta obtenerBicisRef(String marca){
+        int cont = 0;
+        for (int i = 0; i < posActual; i++) {
+            if (bicis[i].getMarca().equals(marca)) {
+                cont++;
+            }
+        }
+        if (cont == 0)
+            return null;
 
-    public void setBicicletas(Bicicleta[] bicicletas) {
-        this.bicicletas = bicicletas;
-    }
+        Bicicleta marcaBici = null;
+        boolean encontrado = false;
+        for (int i = 0; i < posActual; i++) {
+            if (bicis[i].getMarca().equals(marca)) {
+                marcaBici = new Bicicleta(bicis[i]);
+                encontrado = true;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Tienda tienda = (Tienda) o;
-
-        if (numBicicletas != tienda.numBicicletas) return false;
-        if (!nombre.equals(tienda.nombre)) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(bicicletas, tienda.bicicletas);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = nombre.hashCode();
-        result = 31 * result + Arrays.hashCode(bicicletas);
-        result = 31 * result + numBicicletas;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Tienda{" +
-                "nombre='" + nombre + '\'' +
-                ", bicicletas=" + Arrays.toString(bicicletas) +
-                '}';
+            }
+        }
+        if (encontrado == false) {
+            return null;
+        }
+        return marcaBici;
     }
 }

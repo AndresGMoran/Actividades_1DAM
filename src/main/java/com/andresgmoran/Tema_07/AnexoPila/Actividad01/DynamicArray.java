@@ -1,19 +1,19 @@
-package com.andresgmoran.Tema_07.AnexoPila.Actividad01;
+/*package com.andresgmoran.Tema_07.AnexoPila.Actividad01;
 
 import java.util.Arrays;
 
-public class DynamicArray {
-    private double[] arr;
+public class DynamicArray<T> {
+    private Object[] arr;
     private int size;
 
     public DynamicArray(int capacidadInicial) {
-        this.arr = new double[capacidadInicial];
+        this.arr = new Object[capacidadInicial];
         this.size = 0;
     }
     public DynamicArray() {
         this(10);
     }
-    public boolean add(double valor){
+    public boolean add(T valor){
         if(size >= arr.length)
             arr = resize();
         arr[size] = valor;
@@ -21,7 +21,7 @@ public class DynamicArray {
 
         return true;
     }
-    public boolean add(int index, double value){
+    public boolean add(int index, T value){
         if (index >= size ||  index < 0)
             return false;
 
@@ -34,15 +34,15 @@ public class DynamicArray {
         return true;
 
     }
-    public double remove(int index){
+    public T remove(int index){
         if (index >= size || index < 0)
             return Double.POSITIVE_INFINITY;
-        double result = arr[index];
+        T result = (T) arr[index];
         moveLeft(index);
         return result;
     }
-    public double removeWithValue(double value){
-        double result = 0;
+    public T removeWithValue(T value){
+        T result;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == value) {
                 result = remove(i);
@@ -51,10 +51,10 @@ public class DynamicArray {
         }
         return result;
     }
-    public double get(int index){
+    public T get(int index){
         if (index >= size || index < 0)
             return Double.POSITIVE_INFINITY;
-        return arr[index];
+        return (T) arr[index];
     }
     public boolean set(int index, double value){
         if (index >= size || index < 0)
@@ -74,10 +74,10 @@ public class DynamicArray {
         }
         size--;
     }
-    private double[] resize(){
-        double[] newArray = new double[size*2];
+    private Object[] resize(){
+        Object[] newArray = new Object[size*2];
         for (int i = 0; i < size; i++){
-             newArray[i] = arr[i];
+             newArray[i] = (T) arr[i];
         }
         return newArray;
 
@@ -106,7 +106,7 @@ public class DynamicArray {
     public int hashCode() {
         double[] effectiveArray = new double[size];
         for (int i = 0; i < effectiveArray.length;i++){
-            effectiveArray[i] = arr[i];
+            effectiveArray[i] = (T) arr[i];
         }
         int result = Arrays.hashCode(arr);
         result = 31 * result + size;
@@ -119,4 +119,4 @@ public class DynamicArray {
         sb.append("{");sb.append(Arrays.toString(arr));sb.append("}");sb.append(" Size: ");sb.append(size);
         return sb.toString();
     }
-}
+}*/
