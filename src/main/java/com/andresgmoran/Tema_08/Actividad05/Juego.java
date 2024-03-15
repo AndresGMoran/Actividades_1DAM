@@ -11,10 +11,19 @@ public class Juego {
         crearNuevoJuego();
     }
 
+    /**
+     * Metodo para crear un nuevo juego(Poniendo los intentos devuelta a 5 y creando otro num random).
+     */
     public void crearNuevoJuego() {
         numIntentos = MAX_ATTEMPTS;
         numAdivinar = new Random().nextInt(101);
     }
+
+    /**
+     * Metodo en el que se definen las distintas opcion a la hora de jugar
+     * @param opcion el numero que el usuario a insertado
+     * @return 0 si a ganado, -1 si el numero de intentos ya llegado a 0 y 1 si aun tiene intentos.
+     */
     public int intentoAdivinar(int opcion) {
         if (opcion == numAdivinar) {
             return 0; // Gano

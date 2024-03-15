@@ -33,6 +33,7 @@ public class UI {
         cajaTexto.setBounds(20, 50, 350, 35);
         frame.add(cajaTexto);
 
+        //Creamos el boton.
         button = new JButton("Adivinar");
         button.setBounds(20,100,250,30);
         button.addActionListener(new ActionListener() {
@@ -63,9 +64,18 @@ public class UI {
 
         frame.setVisible(true);
     }
+
+    /**
+     * Metodo para ir actualizacion el contador de intentos
+     */
     private void actualizarNumIntentos(){
         intentosLabel.setText("Intentos restantes: " + juego.numIntentos);
     }
+
+    /**
+     * Metodo para mostrar pagina y preguntar si quiere volver a jugar
+     * @return la opcion "si, volver a jugar"
+     */
     private boolean opcionNuevoJuego(){
         int opcion = JOptionPane.showConfirmDialog(frame, "¿Te gustaría volver a jugar?", "Nuevo juego",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
