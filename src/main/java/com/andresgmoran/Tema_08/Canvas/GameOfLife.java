@@ -8,6 +8,7 @@ public class GameOfLife {
     private final int cellSize;
     private int[][] world; //Matriz actual
     private int[][] newWorld; //Matriz futuro
+    private boolean cellStatus;
 
     public GameOfLife(int width, int height, int cellSize) {
         this.width = width;
@@ -15,6 +16,7 @@ public class GameOfLife {
         this.cellSize = cellSize;
         world = new int[height][width];
         newWorld = new int[height][width];
+        cellStatus = true;
     }
 
     public int getWidth() {
@@ -29,15 +31,15 @@ public class GameOfLife {
         return cellSize;
     }
     public void update(){
-        //Simular una generazion
+
     }
     public void draw(Graphics2D g2){
         g2.setColor(Color.WHITE);
-        for (int i = 0; i < height;i+=cellSize){
+        for (int i = 0; i < width;i+=cellSize){
             g2.drawLine(0, i, width, i);
         }
-        for (int i = 0; i < width;i+=cellSize){
-            g2.drawLine(i, 0, i, height);
+        for (int j = 0; j < height;j+=cellSize){
+            g2.drawLine(j,0,j,height);
         }
     }
 }
