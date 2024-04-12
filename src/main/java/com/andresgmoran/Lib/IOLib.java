@@ -60,17 +60,26 @@ public class IOLib {
      * @param max el numero maximo valido
      * @return el numero(Double) que a insertado el usuario (si es valido)
      */
-    public static double solicitarDouble(String mensaje, double min, double max){
-        double result;
+    public static double solicitarDouble(String mensaje, double min, double max) {
+        double result = 0;
         boolean valido;
+        boolean validoExcepcion = false;
 
-        do {
-            System.out.println(mensaje);
-            result = Double.parseDouble(scanner.nextLine());
-            valido = result >= min && result <= max;
-            if (!valido)
-                System.err.printf("La longitud tiene que ser entre %s y %s", min,max);
-        }while (!valido);
+        while (!validoExcepcion) {
+            try {
+                do {
+                    System.out.println(mensaje);
+                    result = Double.parseDouble(scanner.nextLine());
+                    valido = result >= min && result <= max;
+                    if (!valido)
+                        System.err.printf("El numero tiene que ser entre %s y %s \n", min, max);
+                    validoExcepcion = true;
+                } while (!valido);
+            } catch (NumberFormatException nfe) {
+                System.out.println("Debes ingresar un numero");
+                validoExcepcion = false;
+            }
+        }
         return result;
     }
 
@@ -81,17 +90,26 @@ public class IOLib {
      * @param max el numero maximo valido
      * @return el numero(integer) que a insertado el usuario (si es valido)
      */
-    public static int solicitarInteger(String mensaje, int min, int max){
-        int result;
+        public static int solicitarInteger(String mensaje, int min, int max){
+        int result = 0;
         boolean valido;
+        boolean validoExcepcion = false;
 
-        do {
-            System.out.println(mensaje);
-            result = Integer.parseInt(scanner.nextLine());
-            valido = result >= min && result <= max;
-            if (!valido)
-                System.err.printf("La longitud tiene que ser entre %s y %s", min,max);
-        }while (!valido);
+        while (!validoExcepcion){
+            try {
+                do {
+                    System.out.println(mensaje);
+                    result = Integer.parseInt(scanner.nextLine());
+                    valido = result >= min && result <= max;
+                    if (!valido )
+                        System.err.printf("El numero tiene que ser entre %s y %s \n", min,max);
+                    validoExcepcion = true;
+                }while (!valido);
+            }catch (NumberFormatException nfe){
+                System.out.println("Debes ingresar un numero");
+                validoExcepcion = false;
+            }
+        }
         return result;
     }
     public static boolean solicitarBoolean(String mensaje, int min, int max){
