@@ -6,13 +6,30 @@ import com.andresgmoran.Tema_09.Actividad03.Actividad03;
 import com.andresgmoran.Tema_09.Actividad05.Actividad05;
 import com.andresgmoran.Tema_09.Actividad06.Actividad06;
 import com.andresgmoran.Tema_09.Actividad07.Actividad07;
+import com.andresgmoran.Tema_09.Actividad08.Actividad08;
+import com.andresgmoran.Tema_09.Actividad09.ArithmeticExceptionPersonal;
+import com.andresgmoran.Tema_09.Actividad09.IndexOutOfBoundsPersonal;
+import com.andresgmoran.Tema_09.Actividad09.NullPointerExceptionPersonal;
 
 public class Main {
     public static void main(String[] args) {
-        String[] cadenas = new String[3];
-        cadenas[0] = "ajjh";
-        cadenas[2] = "bhhhs";
-        Actividad07 actividad07 = new Actividad07();
-        actividad07.mostrarCadenasArray(cadenas);
+        Actividad08 actividad08 = new Actividad08();
+        try {
+            actividad08.ArithmeticExceptionDivision();
+        }catch (ArithmeticExceptionPersonal aep){
+            System.out.println(aep.getMessage());
+        }
+
+        try {
+            actividad08.NullPointerExceptionCadena();
+        }catch (NullPointerExceptionPersonal npp){
+            System.out.println(npp.getMessage());
+        }
+
+        try{
+            actividad08.IndexOutOfBoundsArray();
+        }catch (IndexOutOfBoundsPersonal ip){
+            System.out.println(ip.getMessage());
+        }
     }
 }
