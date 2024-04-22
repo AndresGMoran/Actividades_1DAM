@@ -2,6 +2,7 @@ package com.andresgmoran.Tema_10.Actividad02;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class ArrayListEstadisticas extends ArrayList<Double> implements IEstadisticas{
@@ -57,7 +58,23 @@ public class ArrayListEstadisticas extends ArrayList<Double> implements IEstadis
 
     @Override
     public double moda() {
-        int cont1 = 0;
+        HashMap<Double, Integer> repeticiones = new HashMap<>();
+        int maxReps = 0;
+        double valorMasRepetido = get(0);
+        for (int i = 0; i < size(); i++){
+            double numero = get(i);
+            int valor = 0;
+            Integer reps = repeticiones.get(numero);
+            if (reps != null)
+                valor =  reps+1;
+            if (maxReps < valor){
+                valorMasRepetido = numero;
+                maxReps = valor;
+            }
+            repeticiones.put(numero,valor);
+        }
+        return valorMasRepetido;
+       /* int cont1 = 0;
         int cont2 = 0;
         double moda = 0;
         for (int i = 0; i < size(); i++){
@@ -71,6 +88,7 @@ public class ArrayListEstadisticas extends ArrayList<Double> implements IEstadis
                 moda = get(i);
             }
         }
-        return moda;
+        return moda;*/
+
     }
 }
