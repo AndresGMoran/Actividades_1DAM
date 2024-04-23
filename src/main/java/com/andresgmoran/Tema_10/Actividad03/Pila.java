@@ -3,7 +3,7 @@ package com.andresgmoran.Tema_10.Actividad03;
 import java.util.ArrayList;
 
 public class Pila<T> implements IPila<T> {
-    ArrayList<T> lista;
+    private ArrayList<T> lista;
 
     public Pila(ArrayList<T> lista) {
         this.lista = new ArrayList<>();

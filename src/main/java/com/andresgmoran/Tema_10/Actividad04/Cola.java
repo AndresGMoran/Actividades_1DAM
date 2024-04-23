@@ -3,7 +3,7 @@ package com.andresgmoran.Tema_10.Actividad04;
 import java.util.ArrayList;
 
 public class Cola<T> implements ICola<T>{
-    ArrayList<T> cola;
+    private ArrayList<T> cola;
 
     public Cola(ArrayList<T> cola) {
         this.cola = new ArrayList<>();
