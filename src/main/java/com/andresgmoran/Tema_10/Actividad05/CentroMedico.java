@@ -36,7 +36,7 @@ public class CentroMedico {
         Paciente.Sexo sexo = Paciente.Sexo.values()[sexoEscogido];
         double altura = faker.number().randomDouble(2,1,2);
         double peso = faker.number().randomDouble(10,50,100);
-         return nuevoPacinete(nombre,fechaNacimiento,sexo,altura,peso);
+        return nuevoPacinete(nombre,fechaNacimiento,sexo,altura,peso);
 
     }
 
