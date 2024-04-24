@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Traductor {
-    Map<String, String> palabras;
+    private final Map<String, String> palabras;
 
     public Traductor() {
         this.palabras = new HashMap<>();
