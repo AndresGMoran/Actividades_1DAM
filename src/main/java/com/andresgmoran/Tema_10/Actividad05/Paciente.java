@@ -15,7 +15,8 @@ public class Paciente {
     private double peso;
 
     public Paciente(String nombre, Date fechaNacimiento, Sexo sexo, double altura, double peso) {
-        this.id = autoId++;
+        autoId++;
+        this.id = autoId;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
