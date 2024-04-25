@@ -4,10 +4,13 @@ import com.andresgmoran.Lib.ConsoleMenuLib;
 import com.andresgmoran.Lib.IOLib;
 
 public class Actividad08 {
-    public ConsoleMenuLib menu = new ConsoleMenuLib("Menu Principal");
+    public ConsoleMenuLib menu;
 
-    public  Diccionario diccionario = new Diccionario();
+    public  Diccionario diccionario;
     public Actividad08() {
+        diccionario = new Diccionario();
+
+        menu = new ConsoleMenuLib("Menu Principal");
         menu.addOption(" Añadir palabra");
         menu.addOption(" Modificar palabra");
         menu.addOption(" Eliminar palabra");
