@@ -22,6 +22,13 @@ public class Cambio {
         dinero.put("DOP", 56.65); // Peso dominicano
         dinero.put("MXN", 21.02); // Peso mexicano
     }
+
+    /**
+     * Metodo para hacer el cambio de moneda
+     * @param cantidad a cambiar en euros.
+     * @param key la moneda a cambiar.
+     * @return la cantidad cambiado a la moneda seleccionado
+     */
     public double calculo(double cantidad, String key){
         return cantidad*dinero.get(key);
     }
