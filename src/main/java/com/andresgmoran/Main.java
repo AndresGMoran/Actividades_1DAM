@@ -2,44 +2,42 @@ package com.andresgmoran;
 
 import com.andresgmoran.Lib.ConsoleMenuLib;
 import com.andresgmoran.Lib.IOLib;
-import com.andresgmoran.Tema_10.Actividad01.Actividad01;
-import com.andresgmoran.Tema_10.Actividad02.ArrayListEstadisticas;
-import com.andresgmoran.Tema_10.Actividad05.CentroMedico;
-import com.andresgmoran.Tema_10.Actividad05.Paciente;
-import com.andresgmoran.Tema_10.Actividad06.Traductor;
-import com.andresgmoran.Tema_10.Actividad07.Cambio;
-
-import javax.swing.text.html.parser.Entity;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import com.andresgmoran.Tema_10.Actividad08.Diccionario;
 
 public class Main {
     public static ConsoleMenuLib menu = new ConsoleMenuLib("Menu Principal");
 
-    public static Cambio cambio = new Cambio();
+    public static Diccionario diccionario = new Diccionario();
     public static void main(String[] args) {
-        menu.addOption(" Hacer cambio de las siguientes monedas");
-        menu.addOption(" USD (Dólar USA)");
-        menu.addOption(" GBP (Libra esterlina)");
-        menu.addOption(" INR (Rupia India)");
-        menu.addOption(" AUD (Dólar Australiano)");
-        menu.addOption(" (CAD (Dólar Canadiense)");
-        menu.addOption(" (ARS (Peso Argentino)");
-        menu.addOption(" BOB (Boliviano Boliviano)");
-        menu.addOption(" CLP (Peso Chileno)");
-        menu.addOption("  VEZ (Peso Colombiano)");
-        menu.addOption(" CRC (Colón Costarricense)");
-        menu.addOption("  CUP (Peso Cubano)");
-        menu.addOption("  DOP (Peso Dominicano)");
-        menu.addOption("  MXN (Peso Mexicano)");
+        menu.addOption(" Añadir palabra");
+        menu.addOption(" Modificar palabra");
+        menu.addOption(" Eliminar palabra");
+        menu.addOption(" Consultar palabra");
+        menu.addOption(" Mostrar diccionario");
+
 
         int opcion;
         do {
             opcion = menu.showMenu();
-            String key = IOLib.solicitarString("Dime el tipo de moneda(USD): ",3,3);
-            double cantidad = IOLib.solicitarInteger("Dime la cantidad en euros que quieres cambiar: ",1,100000000);
-            System.out.println(cambio.calculo(cantidad,key));
+            switch (opcion){
+                case 1:
+                    String palabra = IOLib.solicitarString("Dime la palabra: ", 2,30);
+                    String significado = IOLib.solicitarString("Dime el significado: ", 2,30);
+                    diccionario.anyadirPalabra(palabra,significado);
+                case 2:
+                    String palabraM = IOLib.solicitarString("Dime la palabra: ", 2,30);
+                    String significadoM = IOLib.solicitarString("Dime el significado: ", 2,30);
+                    diccionario.modificarPalabra(palabraM,significadoM);
+                case 3:
+                    String palabraE = IOLib.solicitarString("Dime la palabra a eliminar: ", 2,30);
+                    diccionario.eliminarPalabra(palabraE);
+                case 4:
+                    String palabraC = IOLib.solicitarString("Dime la palabra a consultar: ", 2,30);
+                    diccionario.consultarPalabra(palabraC);
+                case 5:
+                    System.out.println(diccionario);
+
+            }
         }while (opcion != 0);
 
 
