@@ -14,11 +14,9 @@ public class DiccionarioAc09 {
      * Metodo para añadir un apalabra nueva
      * @param palabra nueva
      * @param significado de la palabra
-     * @return true si se a añadido.
      */
-    public boolean anyadirPalabra(String palabra, String significado){
+    public void anyadirPalabra(String palabra, String significado){
         diccionario.put(palabra, significado);
-        return true;
     }
 
     /**
@@ -71,4 +69,10 @@ public class DiccionarioAc09 {
         return palabras;
     }
 
+    @Override
+    public String toString() {
+        return "DiccionarioAc09{" +
+                "diccionario=" + diccionario +
+                '}';
+    }
 }

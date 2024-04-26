@@ -4,12 +4,13 @@ import com.andresgmoran.Lib.ConsoleMenuLib;
 import com.andresgmoran.Lib.IOLib;
 
 public class Actividad09 {
-    private ConsoleMenuLib menu;
-    private DiccionarioAc09 diccionario;
-    private Juego juego;
+    private final ConsoleMenuLib menu;
+    private final DiccionarioAc09 diccionario;
+    private final Juego juego;
 
     public Actividad09() {
         diccionario = new DiccionarioAc09();
+        juego = new Juego(diccionario);
 
         menu = new ConsoleMenuLib("Juego diccionario");
         menu.addOption(" Añadir palabra");
@@ -46,8 +47,15 @@ public class Actividad09 {
                     System.out.println(diccionario);
                     break;
                 case 6:
-                    juego = new Juego(diccionario);
+                    if (juego.getPuntuaciones().isEmpty()){
+                        juego.primeraJugada();
+                    }else {
+                        juego.siguientesjugadas();
+                    }
+                    System.out.println(juego.getPuntuaciones());
                     break;
+                case 7:
+                    System.out.println(juego.ordenarPorPuntuaciones());
             }
         }while (opcion != 0);
     }
