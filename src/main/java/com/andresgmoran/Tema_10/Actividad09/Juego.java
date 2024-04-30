@@ -67,7 +67,7 @@ public class Juego {
      */
     public HashMap<String, Integer> ordenarPorPuntuaciones() {
         // Convertir el HashMap en una lista de Map.Entry
-        List<Map.Entry<String, Integer>> list = new LinkedList<>(puntuaciones.entrySet());
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(puntuaciones.entrySet());
 
         // Ordenar la lista usando un comparador personalizado
         Collections.sort(list, (o1, o2) -> (o2.getValue()).compareTo(o1.getValue()));
