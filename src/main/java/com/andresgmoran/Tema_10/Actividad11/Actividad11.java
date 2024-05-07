@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Actividad11 {
     private final ConsoleMenuLib menu = new ConsoleMenuLib("Gestion Centro");
+    private final ConsoleMenuLib menuConsultas = new ConsoleMenuLib("Consultas");
     private final Centro centro = new Centro();
 
     public Actividad11() {
@@ -15,7 +16,10 @@ public class Actividad11 {
         menu.addOption(" Alta grupo");
         menu.addOption(" Alta aula");
         menu.addOption(" Alta profesor");
+        menu.addOption(" Consultas");
         menuPrincipal();
+        menuConsultas.addOption("Alumnos por grupo");
+        menuConsultas.addOption("Alumnos por profesor");
     }
 
     /**
@@ -54,10 +58,13 @@ public class Actividad11 {
                     }
                     break;
                 case 4:
-                    nuevoAula();
+                    System.out.println(nuevoAula());
                     break;
                 case 5:
-                    nuevoProfesor();
+                    System.out.println(nuevoProfesor());
+                    break;
+                case 6:
+                    consultas();
                     break;
                 default:
                     System.out.println("Opcion no disponible");
@@ -79,9 +86,6 @@ public class Actividad11 {
         String nombre = IOLib.solicitarString("Dime el nombre del alumno: ", 3,30);
         String nia = IOLib.solicitarString("Dime el nia del alumno: ", 8,8);
         String nombreGrupo = IOLib.solicitarString("Dime el grupo: ",3,30);
-
-        System.out.println(nombreGrupo);
-        new Scanner(System.in).nextLine();
 
         if (!centro.comprobarGrupo(nombreGrupo)){
             System.out.println("Grupo no encontrado, debes crearlo");
@@ -210,4 +214,52 @@ public class Actividad11 {
         double sueldo = IOLib.solicitarDouble("Dime el sueldo del profesor: ",3,10000);
         return centro.altaProfesor(dni,nombre,sueldo);
     }
+
+    /**
+     * Metodo para opciones del menu de consultas.
+     */
+    private void consultas(){
+        int opcion;
+        do {
+            opcion = menuConsultas.showMenu();
+            switch (opcion){
+                case 0:
+                    menuPrincipal();
+                    break;
+                case 1:
+                    alumnosPorGrupo();
+                    break;
+                case 2:
+                    alumnosPorProfesor();
+                    break;
+                default:
+                    System.out.println("Opcion no disponible");
+            }
+        }while (opcion != 0);
+    }
+
+    /**
+     * Metodo para solicitar datos para buscar alumnos por grupo
+     */
+    private void alumnosPorGrupo(){
+        String nombreGrupo = IOLib.solicitarString("Dime el nombre del grupo: ", 3,30);
+        if (centro.buscarAlumnosPorGrupo(nombreGrupo) != null){
+            System.out.println(centro.buscarAlumnosPorGrupo(nombreGrupo));
+        } else {
+            System.out.println("No se encontro alumnos en ese grupo");
+        }
+    }
+
+    /**
+     * Metodo para solicitar datos para buscar alumnos por profesor
+     */
+    private void alumnosPorProfesor(){
+        String dniProfesor = IOLib.solicitarString("Dime el dni del profesor",8,8);
+        if (centro.buscarAlumnosPorProfesor(dniProfesor) != null){
+            System.out.println(centro.buscarAlumnosPorProfesor(dniProfesor));
+        }else {
+            System.out.println("No se encontro alumnos con ese profesor");
+        }
+    }
+
 }

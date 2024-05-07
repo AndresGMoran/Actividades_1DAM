@@ -9,12 +9,16 @@ public class Centro {
     private final List<Grupo> grupos;
     private final List<Aula> aulas;
     private final List<Profesor> profesores;
+    private final List<Alumno> alumnosPorGrupo;
+    private final List<Alumno> alumnosPorProfesor;
     public Centro() {
         alumnos = new ArrayList<>();
         asignaturas = new ArrayList<>();
         grupos = new ArrayList<>();
         aulas = new ArrayList<>();
         profesores = new ArrayList<>();
+        alumnosPorGrupo = new ArrayList<>();
+        alumnosPorProfesor = new ArrayList<>();
     }
 
     /**
@@ -235,6 +239,44 @@ public class Centro {
                     return profesor;
                 }
             }
+        }
+        return null;
+    }
+
+    /**
+     * Metodo para sacar alumnos por grupo
+     * @param nombreGrupo el grupo en el que tienen que estar los alumnos
+     * @return lista con alumnos que esten en el grupo
+     */
+    public List<Alumno> buscarAlumnosPorGrupo(String nombreGrupo){
+       Grupo grupo = getGrupoPorNombre(nombreGrupo);
+       for (Alumno alumno : alumnos){
+           if (alumno.getGrupo().equals(grupo)){
+               alumnosPorGrupo.add(alumno);
+           }
+       }
+       if (!alumnosPorGrupo.isEmpty()){
+           return alumnosPorGrupo;
+       }
+       return null;
+    }
+
+    /**
+     * Metodo para sacar alumnos por profesor
+     * @param dniProfesor profesor que tiene los alumnos
+     * @return lista de los alumnos que tengan el profesor
+     */
+    public List<Alumno> buscarAlumnosPorProfesor(String dniProfesor){
+        Profesor profesor = getProfesor(dniProfesor);
+        for (Alumno alumno : alumnos){
+            for (Asignatura asignatura : alumno.getAsignaturas()){
+                if (asignatura.getProfesor().equals(profesor)){
+                    alumnosPorProfesor.add(alumno);
+                }
+            }
+        }
+        if (!alumnosPorProfesor.isEmpty()){
+            return alumnosPorProfesor;
         }
         return null;
     }
