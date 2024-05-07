@@ -115,7 +115,7 @@ public class Main {
         String modelo = IOLib.solicitarString("Pedir modelo de la marca",1,20);
         double peso = IOLib.solicitarDouble("Ingresa el peso de la bici",1,500);
         double tamanyoRuedas = IOLib.solicitarDouble("Ingresa el tamaño de la rueda",1,30);
-        boolean motor = IOLib.solicitarBoolean("La bici tine motor?",4,5);
+        boolean motor = IOLib.solicitarBoolean("La bici tine motor?","s","n");
         String fehca = IOLib.solicitarString("Ingrese la fecha de la fabricacion",1,20);
 
         tienda.comprarBici(marca, modelo, peso, tamanyoRuedas, motor, fehca);

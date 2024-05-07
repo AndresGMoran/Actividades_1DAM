@@ -9,7 +9,7 @@ import java.util.List;
 public class Empresa {
     private List<Empleado> empleados;
 
-    public Empresa() {
+    public Empresa()  {
         empleados = new ArrayList<>(10);
     }
 

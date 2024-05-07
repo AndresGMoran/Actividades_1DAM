@@ -112,17 +112,21 @@ public class IOLib {
         }
         return result;
     }
-    public static boolean solicitarBoolean(String mensaje, int min, int max){
-        boolean result;
+    public static boolean solicitarBoolean(String mensaje, String opcionTrue, String opcionFalse){
+        String input;
         boolean valido;
 
         do {
             System.out.println(mensaje);
-            result = Boolean.parseBoolean(scanner.nextLine());
-            valido = String.valueOf(result).length() >= min && String.valueOf(result).length() <= max;
-            if (!valido)
-                System.err.printf("La longitud tiene que ser entre %s y %s", min,max);
-        }while (!valido);
-        return result;
+            input = scanner.nextLine();
+            valido = input.equalsIgnoreCase(opcionTrue) || input.equalsIgnoreCase(opcionFalse);
+
+            if (input.equalsIgnoreCase(opcionTrue)) {
+                 return true;
+            } else if (input.equalsIgnoreCase(opcionFalse)) {
+                return false;
+            } else if (!valido)
+                System.err.printf("Debe ser %s o %s", opcionTrue, opcionFalse);
+        }while (true);
     }
 }
