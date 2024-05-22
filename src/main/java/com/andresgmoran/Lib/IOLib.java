@@ -112,6 +112,14 @@ public class IOLib {
         }
         return result;
     }
+
+    /**
+     * Metodo parar solicitar un boolean con formato
+     * @param mensaje el mensaje a mostrar a pantalla
+     * @param opcionTrue opcion que el usuario tiene que insertar para que se escoja la opcion true
+     * @param opcionFalse opcion que el usuario tiene que insertar para que se escoja la opcion false
+     * @return true o false dependiendo del input del usuario
+     */
     public static boolean solicitarBoolean(String mensaje, String opcionTrue, String opcionFalse){
         String input;
         boolean valido;
