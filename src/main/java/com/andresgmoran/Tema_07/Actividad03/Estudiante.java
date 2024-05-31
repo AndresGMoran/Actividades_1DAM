@@ -18,7 +18,6 @@ public class Estudiante {
         this.grupo = grupo;
         this.numTelefono = numTelefono;
     }
-
     public String getNia() {
         return nia;
     }
@@ -27,20 +26,8 @@ public class Estudiante {
         return nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
     public int getGrupo() {
         return grupo;
-    }
-
-    public String getNumTelefono() {
-        return numTelefono;
     }
 
     @Override

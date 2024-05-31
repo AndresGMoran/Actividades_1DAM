@@ -47,4 +47,16 @@ public class Student {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "nia='" + nia + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", dateBirth='" + dateBirth + '\'' +
+                ", group='" + group + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
