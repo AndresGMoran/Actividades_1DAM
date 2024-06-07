@@ -2,7 +2,7 @@ package com.andresgmoran.Tema_11.Actividad04;
 
 import java.awt.*;
 
-public interface Electrodomestico {
+public interface ElectrodomesticoI {
     public static final double PRECIO_BASE = 100;
     public static final Color COLOR = Color.WHITE;
     public static final char CONSUMO_ENERGETICO = 'F';

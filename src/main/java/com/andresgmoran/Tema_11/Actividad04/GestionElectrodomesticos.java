@@ -1,27 +1,15 @@
 package com.andresgmoran.Tema_11.Actividad04;
 
-import java.util.Random;
-
 public class GestionElectrodomesticos {
-    private Electrodomestico[] electrodomesticos;
+    private ElectrodomesticoI[] electrodomesticos;
     public GestionElectrodomesticos() {
-        this.electrodomesticos = new Electrodomestico[10];
+        this.electrodomesticos = new ElectrodomesticoI[10];
         rellenarArray();
         precioTotalElectrodomesticos();
     }
     private void rellenarArray(){
-        Random rnd = new Random();
-        int tipo = 0;
         for (int i = 0; i < electrodomesticos.length; i++) {
-            tipo = rnd.nextInt(2);
-            switch (tipo){
-                case 0:
-                    electrodomesticos[i] = new Television();
-                    break;
-                case 1:
-                    electrodomesticos[i] = new Lavadora();
-                    break;
-            }
+            electrodomesticos[i] = new Electrodonestico();
         }
     }
     private void precioTotalElectrodomesticos(){
@@ -32,7 +20,7 @@ public class GestionElectrodomesticos {
     }
     private double precioLavadoras(){
         double precioTotalLavadoras = 0;
-        for (Electrodomestico electrodomestico : electrodomesticos){
+        for (ElectrodomesticoI electrodomestico : electrodomesticos){
             if (electrodomestico instanceof Lavadora){
                 precioTotalLavadoras += electrodomestico.precioFinal();
             }
@@ -41,7 +29,7 @@ public class GestionElectrodomesticos {
     }
     private double precioTelevisiones(){
         double precioTotalTelevisiones = 0;
-        for (Electrodomestico electrodomestico : electrodomesticos){
+        for (ElectrodomesticoI electrodomestico : electrodomesticos){
             if (electrodomestico instanceof Television){
                 precioTotalTelevisiones += electrodomestico.precioFinal();
             }

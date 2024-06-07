@@ -2,7 +2,7 @@ package com.andresgmoran.Tema_11.Actividad04;
 
 import java.awt.*;
 
-public abstract class Electrodonestico implements Electrodomestico{
+public class Electrodonestico implements ElectrodomesticoI {
     private double precio_base;
     private Color color;
     private char consumo_energetico;
@@ -15,10 +15,10 @@ public abstract class Electrodonestico implements Electrodomestico{
         this.peso = peso;
     }
     public Electrodonestico() {
-        this(Electrodomestico.PRECIO_BASE, Electrodomestico.COLOR, Electrodomestico.CONSUMO_ENERGETICO, Electrodomestico.PESO);
+        this(ElectrodomesticoI.PRECIO_BASE, ElectrodomesticoI.COLOR, ElectrodomesticoI.CONSUMO_ENERGETICO, ElectrodomesticoI.PESO);
     }
     public Electrodonestico(double precio_base, double peso) {
-        this(precio_base, Electrodomestico.COLOR, Electrodomestico.CONSUMO_ENERGETICO, peso);
+        this(precio_base, ElectrodomesticoI.COLOR, ElectrodomesticoI.CONSUMO_ENERGETICO, peso);
     }
 
     public double getPrecio_base() {
@@ -42,7 +42,7 @@ public abstract class Electrodonestico implements Electrodomestico{
         if(letra >= 'A' && letra <= 'F'){
             this.consumo_energetico = letra;
         } else {
-            this.consumo_energetico = Electrodomestico.CONSUMO_ENERGETICO;
+            this.consumo_energetico = ElectrodomesticoI.CONSUMO_ENERGETICO;
         }
 
     }
@@ -52,13 +52,13 @@ public abstract class Electrodonestico implements Electrodomestico{
         if(color != null){
             this.color = color;
         } else {
-            this.color = Electrodomestico.COLOR;
+            this.color = ElectrodomesticoI.COLOR;
         }
     }
 
     @Override
     public double precioFinal(){
-        double precioFinal = this.precio_base;
+        double precioFinal = precio_base;
         switch (this.consumo_energetico){
             case 'A':
                 precioFinal += 100;

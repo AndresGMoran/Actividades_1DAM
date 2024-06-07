@@ -35,7 +35,7 @@ public class Television extends Electrodonestico{
 
     @Override
     public double precioFinal() {
-        double precioFinal = super.getPrecio_base();
+        double precioFinal = super.precioFinal();
         if (resolucion > 40) {
             precioFinal *= 0.3;
         }
@@ -43,5 +43,13 @@ public class Television extends Electrodonestico{
             precioFinal += 50;
         }
         return precioFinal;
+    }
+
+    @Override
+    public String toString() {
+        return "Television{" +
+                "resolucion=" + resolucion +
+                ", smart=" + smart +
+                '}';
     }
 }
