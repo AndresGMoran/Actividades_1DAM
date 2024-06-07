@@ -20,5 +20,27 @@ public class Socio {
         this.poblacion = poblacion;
         alquileres = new ArrayList<>();
     }
+    public void nuevoAlquiler(Alquiler alquiler){
+        alquileres.add(alquiler);
+    }
 
+    public String getNif() {
+        return nif;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public String getPoblacion() {
+        return poblacion;
+    }
+
+    public List<Alquiler> getAlquileres() {
+        return alquileres;
+    }
 }

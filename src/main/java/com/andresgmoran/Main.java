@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        //Actividad06 actividad06 = new Actividad06();
-        Actividad05 actividad05 = new Actividad05();
+        Actividad06 actividad06 = new Actividad06();
+        //Actividad05 actividad05 = new Actividad05();
     }
 }

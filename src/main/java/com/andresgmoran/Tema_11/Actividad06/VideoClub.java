@@ -31,6 +31,9 @@ public class VideoClub {
         }
         return null;
     }
-
-
+    public Alquiler nuevoAlquiler(Multimedia multimedia, Socio socio){
+        Alquiler alquiler = new Alquiler(multimedia, socio);
+        socio.nuevoAlquiler(alquiler);
+        return alquiler;
+    }
 }
